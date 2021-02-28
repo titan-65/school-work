@@ -1,6 +1,6 @@
 import Home from './views/public/Home.svelte'
-import WorkMenuView from './views/public/WorkMenuView.svelte'
-import WorkMenuAdmin from './views/admin/WorkMenuAdminView.svelte'
+import WorkMenuView from './views/public/WorkMenu.svelte'
+import WorkMenuAdmin from './views/admin/WorkAdminView.svelte'
 
 
 const routes = [
