@@ -4,7 +4,6 @@
 </script>
 
 <main>
-	<p>Lets get started</p>
 	<Router {routes}/>
 </main>
 

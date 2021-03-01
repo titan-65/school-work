@@ -1,4 +1,9 @@
-<script></script>
+<script>
+    import { user } from '../../stores.js'
+    let date = new Date().getTime()
+</script>
 <main>
-    <h1>Admin</h1>
+    <div class=" h-full w-full absolute">
+        
+    </div>
 </main>
