@@ -1,13 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+const { getAllUsers, createUser, getUser, updateUser, deleteUser } = require('../controllers/user.controller')
 
-const getAllUsers = () => {
-    res.status(500).json({
-        status: 'error',
-        messages: 'This route not yet created'
-    })
-}
+
+
 router.route('/api/v1/users')
     .get(getAllUsers)
     .post(createUser)
