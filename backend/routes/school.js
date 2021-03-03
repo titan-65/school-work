@@ -13,6 +13,14 @@ router.route('/api/v1/school-work/:id')
     .get(getWork)
     .patch(updateWork)
     .delete(deleteWork)
+
+router.param('id', (req, res, next, id) => {
+        console.log(`Tour id is: ${id}`)
+        if (req.params.id) {
+
+        }
+        next()
+    })
     // router.get('/api/school-work', list)
 
 // router.get('/api/v1/school-work')
