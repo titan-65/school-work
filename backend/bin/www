@@ -4,9 +4,34 @@
  * Module dependencies.
  */
 
-const app = require('../app');
 const debug = require('debug')('backend:server');
-const http = require('http');
+const http = require('http')
+const dotenv = require('dotenv')
+const mongoose = require('mongoose')
+const app = require('../app')
+
+
+
+
+
+/**
+ * Environment variables
+ */
+dotenv.config({
+    path: './config.env'
+})
+
+const DB = process.env.DATABASE.replace('<password>', process.env.DATABASE_PASSWORD)
+
+
+mongoose.connect(DB, {
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+    useNewUrlParser: true
+}, () => {
+    console.log("Connected to database")
+})
+
 
 /**
  * Get port from environment and store in Express.

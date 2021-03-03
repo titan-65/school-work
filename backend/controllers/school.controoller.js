@@ -1,73 +1,48 @@
-const schoolWorkArray = [{
-    id: 23,
-    title: 'SchoolWork',
-    author: 'V.Bennett',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,sd safsaf sdffds onapif asdjpoasjpojsapojfpo fsoajfpojp[oaj',
-    grade: 8,
-    school: 'Eltham High School',
-    rating: 3.5,
-    images: [
-        {}
-    ],
-    comments: [{
-            id: 2,
-            comment: 'Excellent use of '
-        },
-        {
-            id: 3,
-            comment: 'How do we get the work from here?'
-        }
-    ]
+const SchoolWork = require('../models/schoolwork.model')
 
-
-}, {
-    id: 24,
-    title: 'SchoolWork',
-    author: 'V.Bennett',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit,sd safsaf sdffds onapif asdjpoasjpojsapojfpo fsoajfpojp[oaj',
-    grade: 9,
-    school: 'Eltham High School',
-    rating: 4.5,
-    images: [
-        {}
-    ],
-    comments: [{
-            id: 2,
-            comment: 'Excellent use of '
-        },
-        {
-            id: 3,
-            comment: 'How do we get the work from here?'
-        }
-    ]
-
-
-}]
-
-const getAllWork = (req, res) => {
+const getAllWork = async(req, res) => {
+    const schoolWorks = await SchoolWork.find({})
     res.status(200).json({
         status: 'success',
-        results: schoolWorkArray.length,
+        results: schoolWorks.length,
         data: {
-            schoolWorkArray
+            schoolWorks
         }
     })
 }
 
-const createWork = (req, res) => {
-    const schoolWork = []
-    const newSchoolWork = req.body
-    schoolWork.push(newSchoolWork)
-    return res.status(201).json({
-        status: 'success',
-        data: {
-            schoolWork
-        }
-    })
+
+/**
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+
+const createWork = async(req, res) => {
+    try {
+        const newSchoolWork = await new SchoolWork(req.body)
+        await newSchoolWork.save()
+        return res.status(201).json({
+            status: 'success',
+            data: {
+                newSchoolWork
+            }
+        })
+    } catch (e) {
+        res.status(404).json({
+            status: 'error',
+            messages: e.message
+        })
+    }
 
 }
 
-const getWork = (req, res) => {
+const getWork = async(req, res) => {
+    try {
+        const schoolWork = await SchoolWork.findById(req.params.id)
+    } catch (error) {
+
+    }
     console.log(req.params)
     const schoolWorkId = req.params.id * 1
     const schoolWork = schoolWorkArray.find(wrk => wrk.id === schoolWorkId)
@@ -101,4 +76,4 @@ const deleteWork = (req, res) => {
     })
 }
 
-module.exports = { getAllWork, createWork, updateWork, deleteWork }
+module.exports = { getAllWork, getWork, createWork, updateWork, deleteWork }
