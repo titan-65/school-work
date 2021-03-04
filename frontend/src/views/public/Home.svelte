@@ -1,6 +1,6 @@
 <script>
-    import { Navigate } from 'svelte-router-spa'
-    let date = new Date().getTime()
+    // import { Navigate } from 'svelte-router-spa'
+    // let date = new Date().getTime()
     import Hero from '../../components/shared/Hero.svelte'
     let emailAddress
     let schoolName
