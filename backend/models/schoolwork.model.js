@@ -14,8 +14,13 @@ const SchoolWork = new Schema({
     grade: Number,
     school: String,
     rating: Number,
-    images: [{ type: String }],
-    comments: [{ type: String }]
+    imageCover: { type: String },
+    images: [String],
+    comments: [String],
+    createdAt: {
+        type: Date,
+        default: Date.now()
+    }
 })
 
 module.exports = mongoose.model('SchoolWork', SchoolWork)
