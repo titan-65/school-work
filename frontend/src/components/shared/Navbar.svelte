@@ -1,5 +1,5 @@
 <script>
-    import { Navigate } from 'svelte-router-spa'
+    // import { Navigate } from 'svelte-router-spa'
 
 </script>
 <section class="w-full px-8 text-gray-700 bg-white navShadow">
