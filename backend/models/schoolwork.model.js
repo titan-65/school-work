@@ -6,7 +6,10 @@ const SchoolWork = new Schema({
 
     title: {
         type: String,
-        required: true
+        required: true,
+        unique: true,
+        maxLength: [40, "Title must have 40 characters"],
+        minLength: [10, "Title must have more that 10 characters"]
     },
     author: { type: String, required: true },
     preview: { type: String },
