@@ -27,5 +27,20 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/', usersRouter);
 app.use('/', schoolWorkRouter);
+app.all('*', (req, res, next) => {
+    res.status(404).json({
+        status: 'fail',
+        message: `Cant find ${req.originalUrl}`
+    })
+})
+
+app.use((err, req, res, next) => {
+    err.statusCode = err.statusCode || 500
+    err.status = err.status || 'error'
+    res.status(err.statusCode).json({
+        status: err.status,
+        message: err.message
+    })
+})
 
 module.exports = app;
